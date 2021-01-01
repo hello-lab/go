@@ -552,26 +552,7 @@ async function music_message(message, mapKey) {
                 }
             } else {
 
-                if (isYoutube(qry) && isYoutubePlaylist(qry)) {
-                    try {
-                        const arr = await youtube_tracks_from_playlist(qry);
-                        for (let item of arr)
-                            addToQueue(item, mapKey)
-                        message.react(EMOJI_GREEN_CIRCLE)
-                    } catch (e) {
-                        console.log('music_message 476:' + e)
-                        message.channel.send('Failed to process playlist: ' + qry);
-                    }
-                } else {
-                    try {
-                        addToQueue(qry, mapKey);
-                        message.react(EMOJI_GREEN_CIRCLE)
-                    } catch (e) {
-                        console.log('music_message 484:' + e)
-                        message.channel.send('Failed to find video for (try again): ' + qry);
-                    }
-                }
-            }
+                
         } else if (args[0] == _CMD_SKIP) {
 
             skipMusic(mapKey, ()=>{
