@@ -190,11 +190,11 @@ discordClient.on('ready', () => {
 })
 discordClient.login(DISCORD_TOK)
 
-const PREFIX = 'e';
+const PREFIX = '!';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
 const _CMD_LEAVE       = PREFIX + 'leave';
-const _CMD_PLAY        = PREFIX + 'play';
+const _CMD_PLAY        = PREFIX + 'p';
 const _CMD_PAUSE       = PREFIX + 'pause';
 const _CMD_RESUME      = PREFIX + 'resume';
 const _CMD_SHUFFLE     = PREFIX + 'shuffle';
