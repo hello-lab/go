@@ -190,7 +190,7 @@ discordClient.on('ready', () => {
 })
 discordClient.login(DISCORD_TOK)
 
-const PREFIX = 'e';
+const PREFIX = '!';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
 const _CMD_LEAVE       = PREFIX + 'leave';
