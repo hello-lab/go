@@ -269,6 +269,7 @@ discordClient.on('message', async (msg) => {
                     msg.reply("Cannot leave because not connected.")
                 }
             }
+            break
             {
                 if (!msg.member.voice.channelID) {
                     msg.reply('Error: please join a voice channel first.')
