@@ -257,28 +257,17 @@ discordClient.on('message', async (msg) => {
         }
         else if (msg.content.trim().toLowerCase() == _CMD_REJOIN) {
             
-            {
-                if (guildMap.has(mapKey)) {
-                    let val = guildMap.get(mapKey);
-                    if (val.voice_Channel) val.voice_Channel.leave()
-                    if (val.voice_Connection) val.voice_Connection.disconnect()
-                    if (val.musicYTStream) val.musicYTStream.destroy()
-                        guildMap.delete(mapKey)
-                    msg.reply("Disconnected.")
-                } else {
-                    msg.reply("Cannot leave because not connected.")
-                }
-            }
-            {
-                if (!msg.member.voice.channelID) {
-                    msg.reply('Error: please join a voice channel first.')
-                } else {
-                    if (!guildMap.has(mapKey))
-                        await connect(msg, mapKey)
-                    else
-                        msg.reply('Already connected')
-                }
-            }
+            
+                
+           let val = guildMap.get(mapKey);
+           val.voice_Channel.leave()
+           val.voice_Connection.disconnect()
+           val.musicYTStream.destroy()
+           guildMap.delete(mapKey)
+           msg.reply("Disconnected.")
+           await connect(msg, mapKey)
+                    
+            
 
 
 
@@ -331,21 +320,21 @@ discordClient.on('message', async (msg) => {
 
 function getHelpString() {
     let out = '**VOICE COMMANDS:**\n'
-        out += '```'
-        out += 'music help\n'
-        out += 'music play [random, favorites, <genre> or query]\n'
-        out += 'music skip\n'
-        out += 'music pause/resume\n'
-        out += 'music shuffle\n'
-        out += 'music genres\n'
-        out += 'music set favorite\n'
-        out += 'music favorites\n'
-        out += 'music list\n'
-        out += 'music clear list\n';
+        out += '```        '
+        out += 'please help\n'
+        out += 'please play [random, favorites, <genre> or query]\n'
+        out += 'please skip\n'
+        out += 'please pause/resume\n'
+        out += 'please shuffle\n'
+        out += 'please genres\n'
+        out += 'please set favorite\n'
+        out += 'please favorites\n'
+        out += 'please list\n'
+        out += 'please clear list\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
-        out += '```'
+        out += '```         '
         out += _CMD_HELP + '\n'
         out += _CMD_JOIN + '/' + _CMD_LEAVE + '\n'
         out += _CMD_PLAY + ' [query]\n'
