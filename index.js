@@ -263,16 +263,13 @@ else if (msg.content.trim().toLowerCase() == _CMD_REJOIN) {
                 if (val.musicYTStream) val.musicYTStream.destroy()
                     guildMap.delete(mapKey)
                 msg.reply("Disconnected.")
-            } else {
-                msg.reply("Cannot leave because not connected.")
             }
 if (!msg.member.voice.channelID) {
                 msg.reply('Error: please join a voice channel first.')
             } else {
                 if (!guildMap.has(mapKey))
                     await connect(msg, mapKey)
-                else
-                    msg.reply('Already connected')
+                
             }
 
         }
