@@ -210,6 +210,7 @@ const _CMD_QUEUE       = PREFIX + 'list';
 const _CMD_DEBUG       = PREFIX + 'debug';
 const _CMD_TEST        = PREFIX + 'hello';
 const _CMD_LANG        = PREFIX + 'lang';
+const _CMD_REJOIN      = PREFIX + 'rejoin';
 const PLAY_CMDS = [_CMD_PLAY, _CMD_PAUSE, _CMD_RESUME, _CMD_SHUFFLE, _CMD_SKIP, _CMD_GENRE, _CMD_GENRES, _CMD_RANDOM, _CMD_CLEAR, _CMD_QUEUE, _CMD_FAVORITE, _CMD_FAVORITES, _CMD_UNFAVORITE];
 
 const EMOJI_GREEN_CIRCLE = '🟢'
@@ -253,6 +254,27 @@ discordClient.on('message', async (msg) => {
             } else {
                 msg.reply("Cannot leave because not connected.")
             }
+        }
+else if (msg.content.trim().toLowerCase() == _CMD_REJOIN) {
+            if (guildMap.has(mapKey)) {
+                let val = guildMap.get(mapKey);
+                if (val.voice_Channel) val.voice_Channel.leave()
+                if (val.voice_Connection) val.voice_Connection.disconnect()
+                if (val.musicYTStream) val.musicYTStream.destroy()
+                    guildMap.delete(mapKey)
+                msg.reply("Disconnected.")
+            } else {
+                msg.reply("Cannot leave because not connected.")
+            }
+if (!msg.member.voice.channelID) {
+                msg.reply('Error: please join a voice channel first.')
+            } else {
+                if (!guildMap.has(mapKey))
+                    await connect(msg, mapKey)
+                else
+                    msg.reply('Already connected')
+            }
+
         }
         else if ( PLAY_CMDS.indexOf( msg.content.trim().toLowerCase().split('\n')[0].split(' ')[0] ) >= 0 ) {
             if (!msg.member.voice.channelID) {
