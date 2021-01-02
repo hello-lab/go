@@ -257,16 +257,31 @@ discordClient.on('message', async (msg) => {
         }
         else if (msg.content.trim().toLowerCase() == _CMD_REJOIN) {
             
-                let val = guildMap.get(mapKey);
-                if (val.voice_Channel) val.voice_Channel.leave()
-                if (val.voice_Connection) val.voice_Connection.disconnect()
-                if (val.musicYTStream) val.musicYTStream.destroy()
-                    guildMap.delete(mapKey)
-                msg.reply("Disconnected.")
-            
-           
-               
-                await connect(msg, mapKey)
+            {
+                if (guildMap.has(mapKey)) {
+                    let val = guildMap.get(mapKey);
+                    if (val.voice_Channel) val.voice_Channel.leave()
+                    if (val.voice_Connection) val.voice_Connection.disconnect()
+                    if (val.musicYTStream) val.musicYTStream.destroy()
+                        guildMap.delete(mapKey)
+                    msg.reply("Disconnected.")
+                } else {
+                    msg.reply("Cannot leave because not connected.")
+                }
+            }
+            {
+                if (!msg.member.voice.channelID) {
+                    msg.reply('Error: please join a voice channel first.')
+                } else {
+                    if (!guildMap.has(mapKey))
+                        await connect(msg, mapKey)
+                    else
+                        msg.reply('Already connected')
+                }
+            }
+
+
+
                
         }
 
