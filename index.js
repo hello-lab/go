@@ -190,7 +190,7 @@ discordClient.on('ready', () => {
 })
 discordClient.login(DISCORD_TOK)
 
-const PREFIX = '!';
+const PREFIX = 'e';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
 const _CMD_LEAVE       = PREFIX + 'leave';
@@ -300,16 +300,16 @@ discordClient.on('message', async (msg) => {
 function getHelpString() {
     let out = '**VOICE COMMANDS:**\n'
         out += '```'
-        out += 'music help\n'
-        out += 'music play [random, favorites, <genre> or query]\n'
-        out += 'music skip\n'
-        out += 'music pause/resume\n'
-        out += 'music shuffle\n'
-        out += 'music genres\n'
-        out += 'music set favorite\n'
-        out += 'music favorites\n'
-        out += 'music list\n'
-        out += 'music clear list\n';
+        out += 'please help\n'
+        out += 'please play [random, favorites, <genre> or query]\n'
+        out += 'please skip\n'
+        out += 'please pause/resume\n'
+        out += 'please shuffle\n'
+        out += 'please genres\n'
+        out += 'please set favorite\n'
+        out += 'please favorites\n'
+        out += 'please list\n'
+        out += 'please clear list\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
@@ -329,9 +329,10 @@ function getHelpString() {
         out += _CMD_QUEUE + '\n';
         out += _CMD_CLEAR + '\n';
         out += '```'
+        out += '**IF THE BOT DOES NOT PLAY ANY MUSIC JUST TYPE eleave HIT ENTER THEN ejoin**\n'
+        out += '**PLS FEEL FREE TO SEND MSGS TO hades#2241 IF YOU NEED ANY HELP**\n'
     return out;
 }
-
 async function connect(msg, mapKey) {
     try {
         let voice_Channel = await discordClient.channels.fetch(msg.member.voice.channelID);
@@ -436,7 +437,7 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^music ([a-zA-Z]+)(.+?)?$/;
+    const regex = /^please ([a-zA-Z]+)(.+?)?$/;
     const m = query.match(regex);
     if (m && m.length) {
         const cmd = (m[1]||'').trim();
