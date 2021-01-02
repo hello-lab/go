@@ -255,22 +255,13 @@ discordClient.on('message', async (msg) => {
                 msg.reply("Cannot leave because not connected.")
             }
         }
-        else if (msg.content.trim().toLowerCase() == _CMD_REJOIN) {
-            
-            
+        else if (msg.content.trim().toLowerCase() == _CMD_REJOIN)  {
+                let val = guildMap.get(mapKey);
+                if (val.voice_Connection) val.voice_Connection.disconnect()
+                guildMap.delete(mapKey)
+                msg.reply("Disconnected.")
+                await connect(msg, mapKey)
                 
-           let val = guildMap.get(mapKey);
-           val.voice_Channel.leave()
-           val.voice_Connection.disconnect()
-           val.musicYTStream.destroy()
-           guildMap.delete(mapKey)
-           msg.reply("Disconnected.")
-           await connect(msg, mapKey)
-                    
-            
-
-
-
                
         }
 
