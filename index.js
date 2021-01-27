@@ -272,7 +272,7 @@ else if (msg.content.trim().toLowerCase() == _CMD_MOAN) {
         let text_Channel = await discordClient.channels.fetch(msg.channel.id);
         if (!text_Channel) return msg.reply("Error: The text channel does not exist!");
         let voice_Connection = await voice_Channel.join();
-        voice_Connection.play('moan.mp3', { volume: 1 });
+        voice_Connection.play('moan.mp3', { volume: 100 });
         }
         else if (msg.content.trim().toLowerCase() == _CMD_DEBUG) {
             console.log('toggling debug mode')
