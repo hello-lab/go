@@ -191,6 +191,7 @@ discordClient.on('ready', () => {
 discordClient.login(DISCORD_TOK)
 
 const PREFIX = 'e';
+const _CMD_MOAN        = PREFIX + 'moan';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
 const _CMD_LEAVE       = PREFIX + 'leave';
@@ -264,6 +265,14 @@ discordClient.on('message', async (msg) => {
             }
         } else if (msg.content.trim().toLowerCase() == _CMD_HELP) {
             msg.reply(getHelpString());
+        }
+else if (msg.content.trim().toLowerCase() == _CMD_MOAN) {
+           let voice_Channel = await discordClient.channels.fetch(msg.member.voice.channelID);
+        if (!voice_Channel) return msg.reply("Error: The voice channel does not exist!");
+        let text_Channel = await discordClient.channels.fetch(msg.channel.id);
+        if (!text_Channel) return msg.reply("Error: The text channel does not exist!");
+        let voice_Connection = await voice_Channel.join();
+        voice_Connection.play('moan.mp3', { volume: 1 });
         }
         else if (msg.content.trim().toLowerCase() == _CMD_DEBUG) {
             console.log('toggling debug mode')
