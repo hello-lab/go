@@ -337,6 +337,7 @@ function getHelpString() {
         out += _CMD_GENRES + '\n'
         out += _CMD_QUEUE + '\n';
         out += _CMD_CLEAR + '\n';
+        out += _CMD_MOAN + '\n';
         out += '```'
         out += '**IF THE BOT DOES NOT PLAY ANY MUSIC JUST TYPE eleave HIT ENTER THEN ejoin**\n'
         out += '**PLS FEEL FREE TO SEND MSGS TO hades#2241 IF YOU NEED ANY HELP**\n'
@@ -483,6 +484,9 @@ function process_commands_query(query, mapKey, userid) {
                 break;
             case 'favorites':
                 out = _CMD_FAVORITES;
+                break;
+            case 'make noise':
+                out = _CMD_MOAN;
                 break;
             case 'set':
                 switch (args) {
