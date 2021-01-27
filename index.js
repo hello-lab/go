@@ -283,7 +283,7 @@ else if (msg.content.trim().toLowerCase() == _CMD_MOAN) {
                 val.debug = true;
         }
         else if (msg.content.trim().toLowerCase() == _CMD_TEST) {
-            msg.reply('hello back =)')
+            msg.reply(':kiss: :tired_face: hello sexyyyy :tired_face: :kiss:  ')
         }
         else if (msg.content.split('\n')[0].split(' ')[0].trim().toLowerCase() == _CMD_LANG) {
             const lang = msg.content.replace(_CMD_LANG, '').trim().toLowerCase()
